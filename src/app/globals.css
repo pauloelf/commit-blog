@@ -3,8 +3,38 @@
 @theme inline {
   --font-primary: var(--font-dm-sans);
   --font-secondary: var(--font-space-grotesk);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --color-card: var(--card);
+  --color-border: var(--border);
 }
 
-body {
-  font-family: var(--font-primary);
+:root {
+  --background: oklch(0.1684 0 0);
+  --foreground: oklch(0.9821 0 0);
+  --primary: oklch(0.8606 0.1731 91.94);
+  --card: oklch(0.2178 0 0);
+  --muted: oklch(0.7668 0 0);
+  --border: oklch(0.3211 0 0);
+  --accent: oklch(0.6792 0.2128 36.53);
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  a {
+    @apply font-primary;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-secondary;
+  }
 }
