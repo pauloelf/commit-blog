@@ -40,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body
-        className={`${spaceGrotesk.variable} ${DMSans.variable} antialiased flex flex-col`}
+        className={`${spaceGrotesk.variable} ${DMSans.variable} antialiased`}
       >
         <Navbar />
         {children}
