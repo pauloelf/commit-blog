@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import { DM_Sans, Space_Grotesk } from "next/font/google"
 import "./globals.css"
+import { Footer } from "@/components/layout/footer"
+import { Navbar } from "@/components/layout/navbar"
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -38,9 +40,11 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body
-        className={`${spaceGrotesk.variable} ${DMSans.variable} antialiased`}
+        className={`${spaceGrotesk.variable} ${DMSans.variable} antialiased flex flex-col`}
       >
+        <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   )
