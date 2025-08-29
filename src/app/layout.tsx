@@ -3,6 +3,7 @@ import { DM_Sans, Space_Grotesk } from "next/font/google"
 import "./globals.css"
 import { Footer } from "@/components/layout/footer"
 import { Navbar } from "@/components/layout/navbar"
+import { QueryProvider } from "@/providers/query-provider"
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -42,9 +43,11 @@ export default function RootLayout({
       <body
         className={`${spaceGrotesk.variable} ${DMSans.variable} antialiased`}
       >
-        <Navbar />
-        {children}
-        <Footer />
+        <QueryProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </QueryProvider>
       </body>
     </html>
   )
