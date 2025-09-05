@@ -36,11 +36,16 @@ export function CardPost({ post }: { post: Post }) {
             })}
           </span>
         </div>
-        <h3 className="font-semibold group-hover:text-primary text-xl line-clamp-2 transition-colors duration-300">
+        <h3
+          className="font-semibold group-hover:text-primary text-xl line-clamp-2 transition-colors duration-300"
+          title={post.title}
+        >
           {post.title}
         </h3>
         <div className="flex flex-col space-y-2 mt-2">
-          <p className="text-muted">{post.description}</p>
+          <p className="text-muted line-clamp-4" title={post.description}>
+            {post.description}
+          </p>
           <ul className="flex flex-wrap gap-2">
             {post.tags.split(",").map((tag) => {
               const tagFormatted = tag.slice(1, -1).replaceAll('"', "").trim()
