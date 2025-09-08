@@ -5,7 +5,7 @@ const fetchPosts = async (category?: string, currentPage?: number) => {
   const response = await api.get(`/posts`, {
     params: {
       populate: "images",
-      sort: "publishedAt:desc",
+      sort: "createdAt:desc",
       pagination: { page: currentPage, pageSize: 6 },
       filters:
         category && category !== "todos"
