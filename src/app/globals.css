@@ -38,3 +38,89 @@
     @apply font-secondary;
   }
 }
+
+.markdown {
+  h1 + h2,
+  h1 + p + h2,
+  h1,
+  h2,
+  h3,
+  h4,
+  pre {
+    margin-top: 2rem;
+  }
+
+  pre {
+    margin-bottom: 2rem;
+  }
+
+  h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary);
+  }
+
+  h3,
+  h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: var(--accent);
+
+    &::before {
+      content: "— ";
+    }
+  }
+
+  p {
+    line-height: 1.5;
+    color: var(--foreground);
+    letter-spacing: 1;
+  }
+
+  p + p,
+  ul + p,
+  div + p,
+  p + ul {
+    margin-top: 1.5rem;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    color: var(--muted);
+  }
+
+  ul:has(a) {
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  ul:has(a) li {
+    margin: 1rem 0;
+    &::before {
+      content: none;
+    }
+
+    a {
+      padding: 0.5rem 1rem;
+      color: var(--foreground);
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      transition: colors 0.3s ease;
+
+      &:hover {
+        color: var(--primary);
+        border-color: var(--primary);
+      }
+    }
+  }
+
+  li {
+    &::before {
+      content: "— ";
+    }
+  }
+}
