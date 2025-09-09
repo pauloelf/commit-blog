@@ -1,0 +1,5 @@
+export * from "./about-hero-section"
+export * from "./idea-section"
+export * from "./lets-talk-section"
+export * from "./my-role-section"
+export * from "./works-section"
