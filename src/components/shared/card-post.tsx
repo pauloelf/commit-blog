@@ -29,7 +29,7 @@ export function CardPost({ post }: { post: Post }) {
         <div className="*:flex *:gap-1 *:text-muted *:text-sm">
           <span>
             <CalendarDays size={16} />
-            {new Date(post.publishedAt).toLocaleDateString("pt-BR", {
+            {new Date(post.createdAt).toLocaleDateString("pt-BR", {
               day: "2-digit",
               month: "2-digit",
               year: "numeric",
