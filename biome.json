@@ -23,7 +23,8 @@
   "formatter": {
     "enabled": true,
     "indentStyle": "space",
-    "indentWidth": 2
+    "indentWidth": 2,
+    "attributePosition": "auto"
   },
   "linter": {
     "enabled": true,
@@ -31,6 +32,10 @@
       "recommended": true,
       "suspicious": {
         "noUnknownAtRules": "off"
+      },
+      "a11y": {
+        "noNoninteractiveTabindex": "off",
+        "noLabelWithoutControl": "off"
       }
     },
     "domains": {
@@ -41,7 +46,9 @@
   "assist": {
     "actions": {
       "source": {
-        "organizeImports": "on"
+        "organizeImports": "on",
+        "useSortedProperties": "on",
+        "useSortedAttributes": "on"
       }
     }
   }
