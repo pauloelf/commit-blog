@@ -38,6 +38,7 @@ export function CategoriesFilters({
       ) : (
         <>
           <li
+            aria-label="Categoria: Todos"
             data-active={currentCategory === "todos"}
             onClick={() => setCurrentCategory("todos")}
             onKeyUp={(e) => e.key === "Enter" && setCurrentCategory("todos")}
@@ -47,6 +48,7 @@ export function CategoriesFilters({
           </li>
           {data?.map((category: Categories) => (
             <li
+              aria-label={`Categoria: ${category.name}`}
               data-active={currentCategory === category.slug}
               key={category.id}
               onClick={() => handleSelected(category)}

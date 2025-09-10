@@ -18,7 +18,7 @@ export function Pagination({ meta, setCurrentPage }: PaginationProps) {
     <ul className="flex justify-end items-center gap-2">
       {pages.map((pageValue) => {
         return (
-          <li key={pageValue}>
+          <li aria-label={`Página ${pageValue}`} key={pageValue}>
             <Button
               className={`${pageValue === page ? "bg-primary text-neutral-900" : ""}`}
               onClick={() => setCurrentPage(pageValue)}

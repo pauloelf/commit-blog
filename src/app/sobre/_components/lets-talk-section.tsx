@@ -49,16 +49,25 @@ export function LetsTalkSection() {
           viewport={{ once: true }}
           whileInView="visible"
         >
-          <Link href="https://github.com/pauloelf" target="_blank">
+          <Link
+            aria-label="GitHub"
+            href="https://github.com/pauloelf"
+            target="_blank"
+          >
             <Github />
           </Link>
           <Link
+            aria-label="LinkedIn"
             href="https://www.linkedin.com/in/paulosergioelf/"
             target="_blank"
           >
             <Linkedin />
           </Link>
-          <Link href="https://www.instagram.com/elffsz/" target="_blank">
+          <Link
+            aria-label="Instagram"
+            href="https://www.instagram.com/elffsz/"
+            target="_blank"
+          >
             <Instagram />
           </Link>
         </motion.div>
