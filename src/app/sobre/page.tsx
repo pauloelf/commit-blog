@@ -6,7 +6,7 @@ import {
   WorksSection,
 } from "./_components"
 
-export default function SobrePage() {
+export default function AboutPage() {
   return (
     <main>
       <AboutHeroSection />
