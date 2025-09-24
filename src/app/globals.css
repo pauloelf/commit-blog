@@ -50,6 +50,15 @@
     margin-top: 2rem;
   }
 
+  a {
+    color: color-mix(in srgb, var(--accent), transparent 10%);
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+
   pre {
     margin-bottom: 2rem;
   }
@@ -109,7 +118,7 @@
       color: var(--foreground);
       border: 1px solid var(--border);
       border-radius: 0.5rem;
-      transition: colors 0.3s ease;
+      transition: all 0.3s ease;
 
       &:hover {
         color: var(--primary);
