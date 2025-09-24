@@ -17,7 +17,7 @@ export function CardPost({ post }: { post: Post }) {
     >
       <div className="shadow-lg border-t border-border rounded-t-xl aspect-video overflow-hidden">
         <Image
-          alt={post.images[0].alternativeText}
+          alt={post.images[0].alternativeText || "Imagem do post"}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           height={post.images[0].height}
           priority
