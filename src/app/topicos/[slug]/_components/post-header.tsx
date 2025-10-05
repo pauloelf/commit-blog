@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { CalendarDays } from "lucide-react"
 import Image from "next/image"
-import { useParams } from "next/navigation"
+import { notFound, useParams } from "next/navigation"
 import type { Post } from "@/@types/card-post"
 import AuthorIconImage from "@/assets/remy-icon.jpg"
 import { SkeletonPostHeader } from "@/components/skeletons/post-header-skeleton"
@@ -15,9 +15,9 @@ export function PostHeader() {
   const { data, isLoading, error } = usePost(slug)
 
   if (isLoading) return <SkeletonPostHeader />
-  if (error) return null
-
   const post: Post = data.data[0]
+
+  if (error || !post) return notFound()
   return (
     <motion.header
       animate="visible"

@@ -12,9 +12,9 @@ export async function generateMetadata({
   const post = await fetchPost(slug)
 
   return {
-    title: `${post.data[0].title} | Commit` || "Post | Commit",
+    title: `${post?.data[0]?.title || "Post"} | Commit`,
     description:
-      post.data[0].description ||
+      post?.data[0]?.description ||
       "Leia conteúdos técnicos e criativos sobre desenvolvimento web, projetos pessoais, arquitetura de código e experiências reais com tecnologias modernas como React, Next.js e Tailwind.",
   }
 }
