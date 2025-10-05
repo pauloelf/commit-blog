@@ -52,10 +52,12 @@
 
   a {
     color: color-mix(in srgb, var(--accent), transparent 10%);
+    border-bottom: 1px solid transparent;
     transition: color 0.3s ease;
 
     &:hover {
       color: var(--accent);
+      border-bottom: 1px solid var(--accent);
     }
   }
 
