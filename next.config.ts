@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "motivated-advice-17027cdcc0.media.strapiapp.com",
+        hostname: "i.imgur.com",
         port: "",
         pathname: "/**",
       },
