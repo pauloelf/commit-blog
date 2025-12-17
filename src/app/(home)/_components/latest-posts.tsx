@@ -8,7 +8,7 @@ import { usePosts } from "@/hooks/usePosts"
 import { fadeIn, fadeInUp } from "@/lib/motion-variants"
 
 export function LatestPosts() {
-  const { data, isLoading, error } = usePosts()
+  const { data, isLoading, error } = usePosts<Post[]>()
   const EmptyArray = Array.from({ length: 6 }).map((_, i) => i)
 
   if (error) return <p>Erro ao carregar os posts.</p>
@@ -43,7 +43,7 @@ export function LatestPosts() {
         viewport={{ once: true }}
         whileInView="visible"
       >
-        {!isLoading && data.data.length === 0 && (
+        {!isLoading && data?.data.length === 0 && (
           <p className="col-span-3 text-foreground/70 text-center">
             Nenhum post encontrado.
           </p>
@@ -52,7 +52,7 @@ export function LatestPosts() {
           ? EmptyArray.map((i) => {
               return <SkeletonCardPost key={i} />
             })
-          : data.data.map((post: Post) => (
+          : data?.data.map((post: Post) => (
               <CardPost key={post.id} post={post} />
             ))}
       </motion.div>
