@@ -17,10 +17,10 @@ export function CategoriesFilters({
   setCurrentCategory,
   setCurrentPage,
 }: CategoriesFiltersProps) {
-  const { data, error, isLoading } = useCategories()
+  const { data, error, isLoading } = useCategories<Categories[]>()
 
   const handleSelected = (category: Categories) => {
-    setCurrentCategory(category.slug)
+    setCurrentCategory(category.name)
     setCurrentPage(1)
   }
 
@@ -49,7 +49,7 @@ export function CategoriesFilters({
           {data?.map((category: Categories) => (
             <li
               aria-label={`Categoria: ${category.name}`}
-              data-active={currentCategory === category.slug}
+              data-active={currentCategory === category.name}
               key={category.id}
               onClick={() => handleSelected(category)}
               onKeyUp={(e) => e.key === "Enter" && handleSelected(category)}
