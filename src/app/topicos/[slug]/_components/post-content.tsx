@@ -12,12 +12,12 @@ import { fadeInDown } from "@/lib/motion-variants"
 
 export function PostContent() {
   const { slug }: { slug: string } = useParams()
-  const { data, isLoading, error } = usePost(slug)
+  const { data, isLoading, error } = usePost<Post[]>(slug)
 
   if (isLoading) return <SkeletonPostContent />
-  if (error) return <p>Erro ao carregar o post.</p>
+  const post: Post | null = data ? data[0] : null
 
-  const post: Post = data.data[0]
+  if (error || !post) return <p>Erro ao carregar o post.</p>
   return (
     <motion.section
       animate="visible"
@@ -27,11 +27,11 @@ export function PostContent() {
     >
       <div className="rounded-lg w-full h-50 sm:h-90 md:h-120 overflow-hidden">
         <Image
-          alt={post.images[0].alternativeText || "Imagem do post"}
+          alt={post.image.alt_text || "Imagem do post"}
           className="w-full h-full object-cover"
-          height={post.images[0].height}
-          src={post.images[0].url}
-          width={post.images[0].width}
+          height={768}
+          src={post?.image.src}
+          width={1366}
         />
       </div>
       <div className="mt-10 max-w-prose markdown">

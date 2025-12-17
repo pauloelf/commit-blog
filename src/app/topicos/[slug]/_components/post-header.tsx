@@ -12,10 +12,10 @@ import { fadeInDown } from "@/lib/motion-variants"
 
 export function PostHeader() {
   const { slug }: { slug: string } = useParams()
-  const { data, isLoading, error } = usePost(slug)
+  const { data, isLoading, error } = usePost<Post[]>(slug)
 
   if (isLoading) return <SkeletonPostHeader />
-  const post: Post = data.data[0]
+  const post: Post | null = data ? data[0] : null
 
   if (error || !post) return notFound()
   return (
@@ -32,14 +32,13 @@ export function PostHeader() {
         {post.description}
       </p>
       <ul className="flex flex-wrap gap-4">
-        {post.tags.split(",").map((tag) => {
-          const tagFormatted = tag.slice(1, -1).replaceAll('"', "").trim()
+        {post.tags.map((tag) => {
           return (
             <li
               className="inline-block bg-transparent hover:bg-card px-6 py-2 border border-border rounded-lg font-semibold text-xs select-none"
-              key={tagFormatted}
+              key={tag}
             >
-              {tagFormatted}
+              {tag}
             </li>
           )
         })}
@@ -56,7 +55,7 @@ export function PostHeader() {
         </div>
         <span className="flex gap-1 text-muted text-sm">
           <CalendarDays size={16} />
-          {new Date(post.createdAt).toLocaleDateString("pt-BR", {
+          {new Date(post.createdAt.seconds * 1000).toLocaleDateString("pt-BR", {
             day: "2-digit",
             month: "2-digit",
             year: "numeric",

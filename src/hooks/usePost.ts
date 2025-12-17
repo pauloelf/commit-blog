@@ -1,20 +1,24 @@
 import { useQuery } from "@tanstack/react-query"
-import api from "@/lib/axios"
+import { collection, getDocs, query, where } from "firebase/firestore"
+import { db } from "@/lib/firebase"
 
-const fetchPost = async (slug: string) => {
-  const response = await api.get(`/posts`, {
-    params: {
-      populate: "images",
-      filters: { slug: { $eq: slug } },
-    },
-  })
-  return response.data
+async function fetchPost<T>(slug: string) {
+  const postsRef = collection(db, "posts")
+
+  const q = query(postsRef, where("slug", "==", slug))
+
+  const snapshot = await getDocs(q)
+
+  return snapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  })) as T
 }
 
-export function usePost(slug: string) {
+export function usePost<T>(slug: string) {
   return useQuery({
     queryKey: ["post", slug],
-    queryFn: () => fetchPost(slug),
+    queryFn: () => fetchPost<T>(slug),
     staleTime: 1000 * 60 * 5,
     retry: 1,
     refetchOnWindowFocus: false,
