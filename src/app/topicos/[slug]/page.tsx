@@ -1,5 +1,6 @@
 import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
+import type { Post } from "@/@types/card-post"
 import { fetchPost } from "@/lib/api"
 import { PostContent, PostHeader } from "./_components"
 
@@ -9,12 +10,12 @@ export async function generateMetadata({
   params: { slug: string }
 }) {
   const { slug } = await params
-  const post = await fetchPost(slug)
+  const post = await fetchPost<Post>(slug)
 
   return {
-    title: `${post?.data[0]?.title || "Post"} | Commit`,
+    title: `${post?.title || "Post"} | Commit`,
     description:
-      post?.data[0]?.description ||
+      post?.description ||
       "Leia conteúdos técnicos e criativos sobre desenvolvimento web, projetos pessoais, arquitetura de código e experiências reais com tecnologias modernas como React, Next.js e Tailwind.",
   }
 }

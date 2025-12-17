@@ -1,10 +1,15 @@
-import api from "./axios"
+import { collection, getDocs, query, where } from "firebase/firestore"
+import { db } from "./firebase"
 
-export const fetchPost = async (slug: string) => {
-  const response = await api.get(`/posts`, {
-    params: {
-      filters: { slug: { $eq: slug } },
-    },
-  })
-  return response.data
+export async function fetchPost<T>(slug: string) {
+  const postsRef = collection(db, "posts")
+
+  const q = query(postsRef, where("slug", "==", slug))
+
+  const snapshot = await getDocs(q)
+
+  return snapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  })) as T
 }
