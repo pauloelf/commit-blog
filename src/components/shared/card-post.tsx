@@ -12,28 +12,31 @@ export function CardPost({ post }: { post: Post }) {
   if (!post) return null
   return (
     <article
-      className="group space-y-6 bg-card shadow-sm hover:shadow-lg hover:shadow-primary/10 py-6 border hover:border-primary/50 border-border rounded-lg overflow-hidden transition-all duration-300"
+      className="group space-y-6 bg-card shadow-sm hover:shadow-lg hover:shadow-primary/10 py-6 border border-border hover:border-primary/50 rounded-lg overflow-hidden transition-all duration-300"
       key={post.id}
     >
-      <div className="shadow-lg border-t border-border rounded-t-xl aspect-video overflow-hidden">
+      <div className="shadow-lg border-border border-t rounded-t-xl aspect-video overflow-hidden">
         <Image
-          alt={post.images[0].alternativeText || "Imagem do post"}
+          alt={post.image.alt_text || "Imagem do post"}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-          height={post.images[0].height}
+          height={768}
           priority
-          src={post.images[0].url}
-          width={post.images[0].width}
+          src={post.image.src}
+          width={1366}
         />
       </div>
       <div className="space-y-4 px-4">
         <div className="*:flex *:gap-1 *:text-muted *:text-sm">
           <span>
             <CalendarDays size={16} />
-            {new Date(post.createdAt).toLocaleDateString("pt-BR", {
-              day: "2-digit",
-              month: "2-digit",
-              year: "numeric",
-            })}
+            {new Date(post.createdAt.seconds * 1000).toLocaleDateString(
+              "pt-BR",
+              {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+              },
+            )}
           </span>
         </div>
         <h3
@@ -47,14 +50,13 @@ export function CardPost({ post }: { post: Post }) {
             {post.description}
           </p>
           <ul className="flex flex-wrap gap-2">
-            {post.tags.split(",").map((tag) => {
-              const tagFormatted = tag.slice(1, -1).replaceAll('"', "").trim()
+            {post.tags.map((tag) => {
               return (
                 <li
                   className="inline-block bg-primary/10 px-2 py-1 rounded-lg text-primary text-xs"
-                  key={tagFormatted}
+                  key={tag}
                 >
-                  {tagFormatted}
+                  {tag}
                 </li>
               )
             })}

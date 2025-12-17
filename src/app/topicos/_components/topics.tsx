@@ -13,7 +13,10 @@ import { CategoriesFilters, Pagination } from "./"
 export function Topics() {
   const [currentCategory, setCurrentCategory] = useState("todos")
   const [currentPage, setCurrentPage] = useState(1)
-  const { data, isLoading, error } = usePosts(currentCategory, currentPage)
+  const { data, isLoading, error } = usePosts<Post[]>(
+    currentCategory,
+    currentPage,
+  )
   const EmptyArray = Array.from({ length: 6 }).map((_, i) => i)
 
   if (error) return <p>Erro ao carregar os posts.</p>
@@ -63,7 +66,7 @@ export function Topics() {
         variants={fadeInUp}
       >
         <AnimatePresence initial={false} mode="sync">
-          {!isLoading && data.data.length === 0 && (
+          {!isLoading && data?.data.length === 0 && (
             <p className="col-span-3 text-foreground/70 text-center">
               Nenhum post encontrado.
             </p>
@@ -72,7 +75,7 @@ export function Topics() {
             ? EmptyArray.map((i) => {
                 return <SkeletonCardPost key={i} />
               })
-            : data.data.map((post: Post) => (
+            : data?.data?.map((post: Post) => (
                 <motion.div
                   animate="visible"
                   exit="hidden"

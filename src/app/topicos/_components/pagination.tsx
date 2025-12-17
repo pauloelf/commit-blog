@@ -4,7 +4,7 @@ import type { Meta } from "@/@types/pagination"
 import { Button } from "@/components/ui/button"
 
 interface PaginationProps {
-  meta: Meta
+  meta?: Meta
   setCurrentPage: (page: number) => void
 }
 
